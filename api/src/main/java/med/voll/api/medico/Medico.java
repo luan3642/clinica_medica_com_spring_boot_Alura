@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.controller.DadosCadastroMedico;
 import med.voll.api.endereco.DadosEndereco;
 import med.voll.api.endereco.Endereco;
 import jakarta.persistence.*;
@@ -28,4 +29,11 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    public Medico(DadosCadastroMedico dados) {
+        this.nome = dados.nome();
+        this.crm = dados.crm();
+        this.email = dados.email();
+        this.especialidade = dados.especialidade();
+        this.endereco = new Endereco(dados.endereco());
+    }
 }
